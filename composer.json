@@ -1,0 +1,16 @@
+{
+    "name": "kof/weixin",
+    "description": "weixin library",
+    "type": "library",
+    "require": {
+        "php": ">=5.5",
+        "ext-curl": ">=7.9.3",
+        "guzzlehttp/guzzle": "^6.2",
+        "psr/cache": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kof\\Weixin\\": "src/"
+        }
+    }
+}
