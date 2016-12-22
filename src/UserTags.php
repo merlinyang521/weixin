@@ -47,7 +47,9 @@ class UserTags
      */
     public function get()
     {
-        return Api::get('tags/get?access_token=' . $this->access_token);
+        return Api::get('tags/get', [
+            'access_token' => $this->access_token
+        ]);
     }
 
     /**

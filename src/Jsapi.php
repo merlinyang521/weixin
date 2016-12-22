@@ -34,10 +34,10 @@ class Jsapi
         }
 
         try {
-            $response = Api::get('ticket/getticket?' . http_build_query(array(
+            $response = Api::get('ticket/getticket', array(
                 'type' => 'jsapi',
                 'access_token' => $access_token
-            )));
+            ));
             if (!isset($response['ticket']) || empty($response['ticket']) ||
                 !isset($response['expires_in']) || empty($response['expires_in'])
             ) {

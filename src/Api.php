@@ -41,13 +41,18 @@ class Api
 
     /**
      * @param string $uri
+     * @param array|null $query
      * @return array|null
      */
-    public static function get($uri)
+    public static function get($uri, array $query = null)
     {
         try {
             $httpClient = self::getHttpClient();
-            $response = $httpClient->get($uri, ['timeout' => self::TIMEOUT, 'connect_timeout' => self::CONNECT_TIMEOUT]);
+            $options = ['timeout' => self::TIMEOUT, 'connect_timeout' => self::CONNECT_TIMEOUT];
+            if ($query) {
+                $options['query'] = $query;
+            }
+            $response = $httpClient->get($uri, $options);
             $body = $response->getBody();
             return \GuzzleHttp\json_decode($body->getContents(), true);
         } catch (Exception $e) {

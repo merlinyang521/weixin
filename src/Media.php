@@ -172,7 +172,9 @@ class Media
      */
     public function getMaterialcount()
     {
-        return Api::get('material/get_materialcount?access_token=' . $this->access_token);
+        return Api::get('material/get_materialcount', [
+            'access_token' => $this->access_token
+        ]);
     }
 
     /**

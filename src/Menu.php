@@ -33,7 +33,9 @@ class Menu
      */
     public function get()
     {
-        return Api::get('menu/get?access_token=' . $this->access_token);
+        return Api::get('menu/get', [
+            'access_token' => $this->access_token
+        ]);
     }
 
 
@@ -43,7 +45,9 @@ class Menu
      */
 	public function delete()
 	{
-        return Api::get('menu/delete?access_token=' . $this->access_token);
+        return Api::get('menu/delete', [
+            'access_token' => $this->access_token
+        ]);
 	}
 
     /**
@@ -72,7 +76,9 @@ class Menu
      */
     public function delconditional()
     {
-        return Api::get('menu/delconditional?access_token=' . $this->access_token);
+        return Api::get('menu/delconditional', [
+            'access_token' => $this->access_token
+        ]);
     }
 
     /**
@@ -81,6 +87,8 @@ class Menu
      */
     public function trymatch($access_token)
     {
-        return Api::get('menu/trymatch?access_token=' . $this->access_token);
+        return Api::get('menu/trymatch', [
+            'access_token' => $this->access_token
+        ]);
     }
 }

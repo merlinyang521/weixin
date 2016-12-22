@@ -34,11 +34,11 @@ class AccessToken
         }
 
         try {
-            $response = Api::get('token?' . http_build_query(array(
+            $response = Api::get('token', array(
                 'grant_type' => 'client_credential',
                 'appid' => $appid,
                 'secret' => $appsecret
-            )));
+            ));
 
             if (!isset($response['access_token']) || empty($response['access_token']) ||
                 !isset($response['expires_in']) || empty($response['expires_in'])

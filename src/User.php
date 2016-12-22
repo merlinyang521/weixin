@@ -64,12 +64,12 @@ class User
      */
 	public function getAuthorizeAccessToken($code)
 	{
-        return Api::get('sns/oauth2/access_token?' . http_build_query(array(
+        return Api::get('sns/oauth2/access_token', array(
             'appid' => $this->appid,
             'secret' => $this->appsecret,
             'code' => $code,
             'grant_type' => 'authorization_code'
-        )));
+        ));
 	}
 
     /**
@@ -81,11 +81,11 @@ class User
      */
 	public function getAuthorizeUserInfo($authorize_access_token, $openid, $lang = 'zh_CN')
 	{
-        return Api::get('sns/userinfo?' . http_build_query(array(
+        return Api::get('sns/userinfo', array(
             'access_token' => $authorize_access_token,
             'openid' => $openid,
             'lang' => $lang
-        )));
+        ));
 	}
 
     /**
@@ -96,11 +96,11 @@ class User
      */
 	public function getSubscribeUserInfo($openid, $lang = 'zh_CN')
 	{
-        return Api::get('user/info?' . http_build_query(array(
+        return Api::get('user/info', array(
             'access_token' => $this->access_token,
             'openid' => $openid,
             'lang' => $lang
-        )));
+        ));
 	}
 
     /**
@@ -110,10 +110,10 @@ class User
      */
 	public function getUserList($next_openid = '')
     {
-        return Api::get('user/get?' . http_build_query(array(
+        return Api::get('user/get', array(
             'access_token' => $this->access_token,
             'next_openid' => $next_openid,
-        )));
+        ));
 	}
 
 	/**

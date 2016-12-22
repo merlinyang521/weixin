@@ -33,7 +33,9 @@ class Kefu
      */
 	public function getkflist()
 	{
-        return Api::get('customservice/getkflist?access_token=' . $this->access_token);
+        return Api::get('customservice/getkflist', [
+            'access_token' => $this->access_token
+        ]);
 	}
 
     /**
@@ -42,7 +44,9 @@ class Kefu
      */
 	public function getonlinekflist()
 	{
-        return Api::get('customservice/getonlinekflist?access_token=' . $this->access_token);
+        return Api::get('customservice/getonlinekflist', [
+            'access_token' => $this->access_token
+        ]);
 	}
 
     /**
@@ -66,7 +70,10 @@ class Kefu
      */
 	public function getsessionlist($kf_account)
     {
-        return Api::get('kfsession/getsessionlist?access_token=' . $this->access_token . '&kf_account=' . $kf_account);
+        return Api::get('kfsession/getsessionlist', [
+            'access_token' => $this->access_token,
+            'kf_account' => $kf_account
+        ]);
     }
 
     /**
