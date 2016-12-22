@@ -27,7 +27,7 @@ class AccessToken
      */
 	public function get($appid, $appsecret)
 	{
-        $accessTokenKey = 'wx_accesstoken:' . $appid;
+        $accessTokenKey = 'wx_accesstoken_' . $appid;
         $accessTokenItem = $this->cacheItemPool->getItem($accessTokenKey);
         if ($accessTokenItem->isHit() && $accessToken = $accessTokenItem->get()) {
             return $accessToken;

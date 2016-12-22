@@ -27,7 +27,7 @@ class Jsapi
      */
 	public function getTicket($appid, $access_token)
 	{
-        $ticketKey = 'wx_ticket:' . $appid;
+        $ticketKey = 'wx_ticket_' . $appid;
         $ticketItem = $this->cacheItemPool->getItem($ticketKey);
         if ($ticketItem->isHit() && $ticket = $ticketItem->get()) {
             return $ticket;
