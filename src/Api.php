@@ -67,6 +67,7 @@ class Api
             $httpClient = self::getHttpClient();
             $options = ['timeout' => self::TIMEOUT, 'connect_timeout' => self::CONNECT_TIMEOUT];
             if ($postData) {
+                $options['curl'] =  ['body_as_string' => true];
                 $options['body'] = \json_encode($postData, JSON_UNESCAPED_UNICODE);
                 $options['_conditional'] = ['Content-Type' => 'application/json'];
             }
