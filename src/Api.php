@@ -49,7 +49,7 @@ class Api
             $httpClient = self::getHttpClient();
             $response = $httpClient->get($uri, ['timeout' => self::TIMEOUT, 'connect_timeout' => self::CONNECT_TIMEOUT]);
             $body = $response->getBody();
-            return \GuzzleHttp\json_decode($body->getContents());
+            return \GuzzleHttp\json_decode($body->getContents(), true);
         } catch (Exception $e) {
             return null;
         }
@@ -75,7 +75,7 @@ class Api
             }
             $response = $httpClient->post($uri, $options);
             $body = $response->getBody();
-            return \GuzzleHttp\json_decode($body->getContents());
+            return \GuzzleHttp\json_decode($body->getContents(), true);
         } catch (Exception $e) {
             return null;
         }
