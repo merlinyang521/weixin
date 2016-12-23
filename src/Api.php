@@ -11,8 +11,6 @@ class Api
 
     const TIMEOUT = 30;
 
-    const BASE_URI = 'https://api.weixin.qq.com/cgi-bin/';
-
     /**
      * @var HttpClient
      */
@@ -25,7 +23,7 @@ class Api
     {
         if (self::$httpClient === null) {
             self::$httpClient = new HttpClient([
-                'base_uri' => self::BASE_URI,
+                'base_uri' => 'https://api.weixin.qq.com/cgi-bin/',
                 'handler' => new CurlHandler()
             ]);
         }
@@ -49,19 +47,14 @@ class Api
     public static function get($uri, array $query = null)
     {
         try {
-            $url = self::BASE_URI . $uri;
+            $httpClient = self::getHttpClient();
+            $options = ['timeout' => self::TIMEOUT, 'connect_timeout' => self::CONNECT_TIMEOUT];
             if ($query) {
-                $url .= (strpos($url, '?') === false ? '?' : '&') . http_build_query($query);
+                $options['query'] = $query;
             }
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_TIMEOUT, self::TIMEOUT);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, self::TIMEOUT);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $response = curl_exec($ch);
-            curl_close($ch);
-
-            return \GuzzleHttp\json_decode($response, true);
+            $response = $httpClient->get($uri, $options);
+            $body = $response->getBody();
+            return \GuzzleHttp\json_decode($body->getContents(), true);
         } catch (Exception $e) {
             return null;
         }

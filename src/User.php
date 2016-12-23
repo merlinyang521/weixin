@@ -64,7 +64,7 @@ class User
      */
 	public function getAuthorizeAccessToken($code)
 	{
-        return Api::get('sns/oauth2/access_token', array(
+        return Api::get('https://api.weixin.qq.com/sns/oauth2/access_token', array(
             'appid' => $this->appid,
             'secret' => $this->appsecret,
             'code' => $code,
@@ -81,7 +81,7 @@ class User
      */
 	public function getAuthorizeUserInfo($authorize_access_token, $openid, $lang = 'zh_CN')
 	{
-        return Api::get('sns/userinfo', array(
+        return Api::get('https://api.weixin.qq.com/sns/userinfo', array(
             'access_token' => $authorize_access_token,
             'openid' => $openid,
             'lang' => $lang
