@@ -46,7 +46,7 @@ class Api
             $options = [
                 'timeout' => self::TIMEOUT,
                 'connect_timeout' => self::CONNECT_TIMEOUT,
-                'body_as_string' => 'true',
+                'body_as_string' => true,
                 'body' => Utils::array2xml($postData),
                 'curl' => [
                     CURLOPT_HEADER => false,
