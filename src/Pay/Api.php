@@ -46,6 +46,7 @@ class Api
             $options = [
                 'timeout' => self::TIMEOUT,
                 'connect_timeout' => self::CONNECT_TIMEOUT,
+                'body_as_string' => 'true',
                 'body' => Utils::array2xml($postData),
                 'curl' => [
                     CURLOPT_HEADER => false,
@@ -53,7 +54,7 @@ class Api
                     CURLOPT_SSL_VERIFYHOST => 2
                 ]
             ];
-            if (!$sslcert_path && $sslkey_path) {
+            if ($sslcert_path && $sslkey_path) {
                 $options['curl'][CURLOPT_SSLCERTTYPE] = 'PEM';
                 $options['curl'][CURLOPT_SSLCERT] = $sslcert_path;
                 $options['curl'][CURLOPT_SSLKEYTYPE] = 'PEM';
